@@ -1,0 +1,197 @@
+:root {
+  --paper: #f3efe6;
+  --ink: #1c1915;
+  --muted: #3f3a34;
+  --line: rgba(28, 25, 21, 0.14);
+  --nav: rgba(243, 239, 230, 0.82);
+  --focus: #1c1915;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #161412;
+    --ink: #f3efe6;
+    --muted: #d4cdc2;
+    --line: rgba(243, 239, 230, 0.18);
+    --nav: rgba(22, 20, 18, 0.82);
+    --focus: #f3efe6;
+    color-scheme: dark;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: 0.75rem;
+  z-index: 20;
+  padding: 0.5rem 0.75rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  transform: translateY(-140%);
+}
+
+.skip:focus {
+  transform: none;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.9rem 1.5rem;
+  background: var(--nav);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: saturate(1.2) blur(16px);
+  -webkit-backdrop-filter: saturate(1.2) blur(16px);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .site-header {
+    background: var(--paper);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .site-header {
+    background: var(--paper);
+    border-bottom-width: 2px;
+  }
+}
+
+.brand {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 1.25rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+main {
+  width: min(40rem, calc(100% - 2.5rem));
+  margin: 0 auto;
+  padding: 4.5rem 0 5rem;
+}
+
+.intro h1 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(2.1rem, 5vw, 3.15rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.028em;
+}
+
+.lede,
+.note {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--muted);
+}
+
+.shelf,
+.contact {
+  margin-top: 4.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+h2 {
+  margin: 0 0 0.75rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.shelf p,
+.contact p {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.contact a {
+  text-underline-offset: 0.18em;
+}
+
+.site-footer {
+  width: min(40rem, calc(100% - 2.5rem));
+  margin: 0 auto;
+  padding: 0 0 2.5rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+@media (max-width: 40rem) {
+  .site-header {
+    padding-inline: 1.1rem;
+  }
+
+  main {
+    padding-top: 3rem;
+  }
+}

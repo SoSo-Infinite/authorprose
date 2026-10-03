@@ -1,7 +1,8 @@
 # Author Prose
 
-Public book site for Chad Lenseth.
+The public site for Chad Lenseth’s books.
 
-- Domain: authorprose.com (registered on Vercel, not attached yet)
-- Do not invent published titles, prices, or reviews.
-- Contact email on the domain record: cjames112@gmail.com
+- Live domain: [authorprose.com](https://authorprose.com)
+- Contact: cjames112@gmail.com
+
+The books section stays empty until a real book is ready to list. This repo does not invent titles, covers, prices, reviews, or publication details.
