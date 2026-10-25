@@ -18,5 +18,26 @@ for (const [p, re] of [["/books/the-coherence-protocol", /isn&#x27;t medical|isn
 [s] = await get("/favicon.ico"); ok(s === 200, "favicon.ico");
 [s] = await get("/opengraph-image"); ok(s === 200, "opengraph-image");
 [s] = await get("/nope"); ok(s === 404, "404 for unknown page");
+
+const headerPaths = ["/", "/about", "/books/the-coherence-protocol", "/privacy", "/robots.txt", "/sitemap.xml", "/favicon.ico", "/opengraph-image", "/nope"];
+for (const p of headerPaths) {
+  const r = await fetch(base + p);
+  const csp = r.headers.get("content-security-policy") || "";
+  ok(r.headers.get("content-security-policy-report-only") === null, `${p} CSP is enforcing`);
+  ok(
+    csp.includes("default-src 'self'") &&
+      csp.includes("script-src 'self' 'unsafe-inline'") &&
+      !csp.includes("unsafe-eval") &&
+      csp.includes("frame-ancestors 'none'") &&
+      csp.includes("script-src-attr 'none'") &&
+      !/https?:/.test(csp),
+    `${p} CSP`,
+  );
+  ok(r.headers.get("x-frame-options") === "DENY", `${p} X-Frame-Options`);
+  ok(r.headers.get("x-content-type-options") === "nosniff", `${p} nosniff`);
+  ok(r.headers.get("referrer-policy") === "strict-origin-when-cross-origin", `${p} Referrer-Policy`);
+  await r.arrayBuffer();
+}
+
 console.log(fail ? `${fail} failed` : "all smoke checks passed");
 process.exit(fail ? 1 : 0);
